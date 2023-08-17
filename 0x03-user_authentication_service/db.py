@@ -48,7 +48,7 @@ class DB:
             return user
         except InvalidRequestError as err:
             self._session.rollback()
-            raise err
+            raise ValueError('Invalid Attr') from err
 
     def update_user(self, user_id: int, **kwargs: Dict[str, Any]) -> None:
         """updates the user data in db"""
