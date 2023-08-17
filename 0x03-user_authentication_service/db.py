@@ -34,10 +34,6 @@ class DB:
     def add_user(self, email: str, hashed_password: str) -> User:
         """Takes two args and returns User object"""
         user = User(email=email, hashed_password=hashed_password)
-        try:
-            self._session.add(user)
-            self._session.commit()
-        except SQLAlchemyError as err:
-            self._session.rollback()
-            raise err
+        self._session.add(user)
+        self._session.commit()
         return user
