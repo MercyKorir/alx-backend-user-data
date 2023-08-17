@@ -49,3 +49,16 @@ class DB:
         except InvalidRequestError as err:
             self._session.rollback()
             raise err
+
+    def update_user(self, user_id: int, **kwargs: Dict[str, Any]) -> None:
+        """updates the user data in db"""
+        try:
+            user = self.find_user_by(id=user_id)
+            for attr, val in kwargs.items():
+                if hasattr(user, attr):
+                    setattr(user, attr, val)
+                else:
+                    raise ValueError('Invalid Attribute')
+            self._session.commit()
+        except NoResultFound:
+            raise ValueError('Not found')
