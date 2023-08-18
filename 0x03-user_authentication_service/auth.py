@@ -76,7 +76,7 @@ class Auth:
             pass
         self._db.update_user(user_id, session_id=None)
 
-    def reset_password_token(self, email: str) -> str:
+    def get_reset_password_token(self, email: str) -> str:
         """updates the password of user"""
         try:
             user = self._db.find_user_by(email=email)
