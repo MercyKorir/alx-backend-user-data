@@ -80,7 +80,7 @@ class Auth:
         """updates the password of user"""
         try:
             user = self._db.find_user_by(email=email)
-        except ValueError:
+        except NoResultFound:
             raise ValueError("Not found")
         user_uuid = _generate_uuid()
         self._db.update_user(user.id, reset_token=user_uuid)
