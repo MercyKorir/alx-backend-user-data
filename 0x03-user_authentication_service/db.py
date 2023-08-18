@@ -39,7 +39,7 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs: Dict[str, Any]) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """Takes arbitrary args and returns first row"""
         try:
             user = self._session.query(User).filter_by(**kwargs).first()
