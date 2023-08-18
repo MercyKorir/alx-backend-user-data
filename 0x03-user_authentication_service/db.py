@@ -50,7 +50,7 @@ class DB:
             self._session.rollback()
             raise err
 
-    def update_user(self, user_id: int, **kwargs: Dict[str, Any]) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """updates the user data in db"""
         try:
             user = self.find_user_by(id=user_id)
